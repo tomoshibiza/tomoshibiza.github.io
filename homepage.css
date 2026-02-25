@@ -24,22 +24,6 @@ header {
   align-items: center;
 }
 
-/* ===== ロード画面 ===== */
-#loading {
-  position: fixed;
-  inset: 0;
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 5.0s;
-}
-
-/* フェードアウト */
-#loading.fade-out {
-  opacity: 0;
-}
 
 /* スピナー */
 .spinner {
@@ -51,7 +35,45 @@ header {
   animation: spin 1s linear infinite;
 }
 
-/* 回転アニメ */
+/* ===== ローディング画面 ===== */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease;
+}
+
+#loading.fade-out {
+  opacity: 0;
+}
+
+/* 横並び */
+.loading-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ◯画像だけ回転 */
+.loading-icon {
+  width: 40px;
+  height: 40px;
+  animation: spin 1.5s linear infinite;
+}
+
+/* テキスト */
+.loading-text {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* 回転 */
 @keyframes spin {
   to {
     transform: rotate(360deg);
