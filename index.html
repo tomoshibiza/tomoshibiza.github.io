@@ -109,11 +109,26 @@
 </head>
 
   <body>
+      <!-- 🔵 ロード画面 -->
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
     <header>
       <div class="fuchidori">
       <h1>近日公開予定</h1>
             </div>
-      </header>
+    </header>
+      <!-- 🔵 ロード終了処理 -->
+  <script>
+    window.addEventListener("load", () => {
+      const loading = document.getElementById("loading");
+      loading.classList.add("fade-out");
+
+      setTimeout(() => {
+        loading.style.display = "none";
+      }, 600);
+    });
+  </script>
   </body>
               
       <!--
