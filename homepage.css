@@ -13,8 +13,18 @@ body {
 }
 
 /* ===== 中央配置 ===== */
-header {
+/*header {
   background: #222;
+  color: #fff;
+  text-align: center;
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}*/
+header {
+  background: url("background.jpg") center center / cover no-repeat;
   color: #fff;
   text-align: center;
 
@@ -44,6 +54,8 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+
+  opacity: 1;
   transition: opacity 0.8s ease;
 }
 
@@ -56,6 +68,13 @@ header {
   display: flex;
   align-items: center;
   gap: 20px;
+
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.loading-wrapper.fade-out {
+  opacity: 0;
 }
 
 /* ◯画像だけ回転 */
@@ -78,4 +97,23 @@ header {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Loadingの中身をフェードアウト */
+.loading-wrapper {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.loading-wrapper.fade-out {
+  opacity: 0;
+}
+
+#loading {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+#loading.fade-out {
+  opacity: 0;
 }
