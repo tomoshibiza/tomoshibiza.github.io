@@ -24,6 +24,7 @@ body {
   align-items: center;
 }*/
 header {
+  position: relative;
   background: url("background.jpg") center center / cover no-repeat;
   color: #fff;
   text-align: center;
@@ -32,6 +33,20 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* 黒い半透明レイヤー */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* ← 暗さ調整 */
+}
+
+/* 文字を前面に */
+header .fuchidori {
+  position: relative;
+  z-index: 1;
 }
 
 
