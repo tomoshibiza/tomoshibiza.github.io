@@ -26,7 +26,7 @@ body {
 header {
   position: relative;
   background: url("background.jpg") center center / cover no-repeat;
-  color: #000;
+  color: #fff;
   text-align: center;
 
   min-height: 100vh;
