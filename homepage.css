@@ -387,6 +387,7 @@ section h2 {
   width: 100%; /* 基本は枠いっぱいに広げる */
   max-width: 300px; /* ただし最大300pxまでしか大きくしない */
   height: auto; /* 高さは自動調整（aspect-ratioが効いて正方形になる） */
+　display: block; /*画像をブロック要素にして中央寄せを有効にする */
   margin: 0 auto;
   object-fit: contain; /* 画像が歪まないように綺麗に切り抜く */
 }
