@@ -1,134 +1,597 @@
-    .fuchidori {
-      color: #000;
-      -webkit-text-stroke: 1px #FFF;
-      text-stroke: 1px #FFF;
+/* =========================================
+   1. 基本設定・リセット
+========================================= */
+* {
+  box-sizing: border-box; /* paddingやborder（内側の余白や枠線）を含めて要素の幅を計算させる（レイアウト崩れを防ぐため） */
+  margin: 0; /* ブラウザが元々持っている外側の余白を消す */
+  padding: 0; /* ブラウザが元々持っている内側の余白を消す */
+}
+
+html {
+  scroll-behavior: smooth; /* メニューなどをクリックした際、ページ内を滑らかにスクロール移動させる */
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
-  background: #f5f5f5;
-  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 全体のフォント（書体）を読みやすい標準のものに設定 */
+  line-height: 1.6; /* 文章の行間を少し広くして読みやすくする */
+  background: #f5f5f5; /* ページ全体の背景色を薄いグレーにする */
+  color: #333; /* 基本の文字色を真っ黒ではなく、少し柔らかい濃いグレーにする */
+  padding-top: 70px; /* 上部にナビゲーション（top-nav）を固定表示させるため、その高さ分だけ全体のコンテンツを下げる */
 }
 
-/* ===== 中央配置 ===== */
-/*header {
-  background: #222;
-  color: #fff;
-  text-align: center;
-
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
-header {
-  position: relative;
-  background: url("background.jpg") center center / cover no-repeat;
-  color: #fff;
-  text-align: center;
-
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* 黒い半透明レイヤー */
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* ← 暗さ調整 */
-}
-
-/* 文字を前面に */
-header .fuchidori {
-  position: relative;
-  z-index: 1;
-}
-
-
-/* スピナー */
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 6px solid #444;
-  border-top: 6px solid #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-/* ===== ローディング画面 ===== */
+/* =========================================
+   2. ローディング画面 (くるくる)
+========================================= */
 #loading {
-  position: fixed;
-  inset: 0;
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-
-  opacity: 1;
-  transition: opacity 0.8s ease;
+  position: fixed; /* 画面全体を覆うように、スクロールしても動かないように固定 */
+  inset: 0; /* top: 0, right: 0, bottom: 0, left: 0 を一気に指定（全画面に広げる） */
+  background: #111; /* 背景色を暗いグレーにする */
+  display: flex; /* 中に入っている要素（文字や画像）を配置しやすくするための設定 */
+  justify-content: center; /* 左右のど真ん中に配置 */
+  align-items: center; /* 上下のど真ん中に配置 */
+  z-index: 9999; /* 他のどの要素よりも一番手前（一番上）に表示させる */
+  transition: opacity 0.8s ease; /* 透明になる時に、0.8秒かけてフワッと消えるアニメーションをつける */
 }
 
-#loading.fade-out {
-  opacity: 0;
-}
-
-/* 横並び */
 .loading-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  opacity: 1;
-  transition: opacity 0.8s ease;
+  display: flex; /* くるくるアイコンと文字を横並びにするための設定 */
+  align-items: center; /* アイコンと文字の上下のズレをなくし、中央で揃える */
+  gap: 20px; /* アイコンと文字の間に20pxの隙間をあける */
+  transition: opacity 0.8s ease; /* フワッと消えるアニメーション */
 }
 
-.loading-wrapper.fade-out {
-  opacity: 0;
-}
-
-/* ◯画像だけ回転 */
 .loading-icon {
-  width: 40px;
-  height: 40px;
-  animation: spin 1.5s linear infinite;
+  width: 40px; /* アイコンの横幅 */
+  height: 40px; /* アイコンの縦幅 */
+  animation: spin 1.5s linear infinite; /* 下で作った「spin」という回転アニメーションを、1.5秒かけて一定の速度（linear）で永遠（infinite）に繰り返す */
 }
 
-/* テキスト */
 .loading-text {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  letter-spacing: 2px;
+  color: white; /* 文字色を白に */
+  font-size: 2rem; /* 文字の大きさを2倍にする */
+  font-weight: bold; /* 文字を太字にする */
+  letter-spacing: 2px; /* 文字と文字の間の隙間を少し広げてスタイリッシュにする */
 }
 
-/* 回転 */
+/* くるくる回すアニメーションの動きを定義 */
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
+  to { transform: rotate(360deg); } /* 最終的に360度（1周）回転した状態にする */
+}
+
+/* JSからこのクラスが付与されると透明になる（フェードアウト用） */
+.fade-out {
+  opacity: 0; /* 透明度を0（完全に見えない状態）にする */
+}
+
+/* =========================================
+   3. ナビゲーション (メニューバー)
+========================================= */
+.top-nav {
+  position: fixed; /* 画面を下にスクロールしても、常に上部に張り付いて追従させる */
+  top: 0; /* 画面の一番上に配置する */
+  width: 100%; /* 横幅を画面いっぱいに広げる */
+  background: #000; /* 背景色を黒にする */
+  z-index: 1000; /* メインコンテンツや画像よりも上に（手前に）表示させる */
+  height: 70px; /* メニューバーの高さを70pxに固定する */
+}
+
+.nav-inner {
+  display: flex; /* ロゴとメニューを横並びに配置するための設定 */
+  align-items: center; /* 縦方向のど真ん中に要素を揃える */
+  width: 100%; /* 画面幅いっぱいに広げる */
+  padding: 0 20px; /* 上下は0、左右の画面端から20pxだけ内側に隙間をあけて、端にピタッとくっつかないようにする */
+  height: 100%; /* 親要素（.top-nav）の高さ70pxをそのまま引き継ぐ */
+  margin: 0 auto; /* 左右の余白を均等にして中央寄せにする */
+}
+
+/* ★メニューを完全な中央に配置するための魔法（右側の見えないつっかえ棒） */
+.nav-inner::after {
+  content: ""; /* 空っぽの要素を作る */
+  flex: 1; /* 余ったスペースの「1」の割合を占めるようにする */
+}
+
+/* ★ロゴ側の箱にも「1」の割合を持たせる */
+.nav-logo {
+  flex: 1; /* 左（ロゴ）が「1」、右（空っぽ）が「1」で挟み込むため、真ん中のメニューが完璧に中央に来る */
+}
+
+.nav-logo a {
+  display: flex; /* ロゴ画像と（もしあれば）テキストを横並びにする */
+  align-items: center; /* 上下中央揃え */
+  text-decoration: none; /* リンクの下線を消す */
+  color: white; /* 文字色を白に */
+}
+
+/* ロゴにマウスを乗せた時の動き */
+.nav-logo a:hover {
+  opacity: 0.7; /* 少しだけ画像を透かして（薄くして）クリックできることを伝える */
+}
+
+.nav-logo img {
+  height: 40px; /* ロゴの本来の高さを40pxにする（バーに収まるサイズ） */
+  transform: scale(1.5); /* 実際の領域は広げず、「見た目だけ」を1.5倍に拡大して大きく見せる */
+  transform-origin: left center; /* 拡大する際の「基準点」を左・中央にする（右に広がってメニューを押し出さないようにするため） */
+  transition: 0.3s; /* 拡大や透過のアニメーションを0.3秒かけて滑らかに行う */
+}
+
+.logo-text {
+  font-size: 24px; /* ロゴのテキストのサイズ */
+  letter-spacing: 1px; /* 文字間隔をあける */
+  transform: translateY(-2px); /* 文字の位置を少しだけ上に（-2px）微調整して画像とバランスをとる */
+}
+
+.top-nav ul {
+  display: flex; /* メニューの各項目（NEWSなど）を横並びにする */
+  justify-content: center; /* メニュー一覧自体を中央に寄せる */
+  list-style: none; /* 箇条書きの黒丸を消す */
+}
+
+/* 右側のメニュー一覧（aタグ＝リンク）の設定 */
+.top-nav ul a {
+  display: block; /* リンクのクリックできる判定（当たり判定）を広げる */
+  padding: 1rem; /* 文字の周りに余白を作り、押しやすくする */
+  color: white; /* 文字色を白にする */
+  text-decoration: none; /* リンクの下線を消す */
+}
+
+/* メニュー項目（NEWS等）にマウスを乗せた時の設定 */
+.top-nav ul a:hover {
+  background: #666; /* 背景色をグレーに変更して、選んでいることを分かりやすくする */
+}
+
+/* =========================================
+   4. メインコンテンツと各セクション
+========================================= */
+main {
+  max-width: 1200px; /* サイト全体のコンテンツが広がりすぎないよう、最大幅を1200pxに制限する */
+  margin: auto; /* 左右の余白を自動計算して、画面の中央に配置する */
+  padding: 1rem; /* コンテンツの周りに少し余白を持たせる */
+  background: white; /* メイン部分の背景色を白にする */
+  word-break: break-word; /* 長いURLや英単語が来ても、枠からはみ出さずに改行させる */
+  overflow-wrap: break-word; /* 同上（レイアウト崩れ防止） */
+}
+
+section {
+  margin-bottom: 60px; /* 各セクション（NEWSやPROFILEなど）の間に60pxの余白をあける */
+  scroll-margin-top: 80px; /* メニューのリンクから飛んできた時、上部の固定ナビにタイトルが隠れないように80px下で止める */
+}
+
+section h2 {
+  font-size: 28px; /* 大見出し（H2）の文字サイズ */
+  margin-bottom: 15px; /* 下に15pxの余白をあける */
+  padding-bottom: 5px; /* 内側の下に5pxの余白 */
+  font-weight: bold; /* 太字にする */
+  letter-spacing: 2px; /* 文字間隔を広げて見出しらしくする */
+}
+
+/* =========================================
+   5. NEWS セクション
+========================================= */
+#news {
+  background: #d4cfcf; /* NEWSエリアの背景を少し濃いグレーにする */
+  padding: 20px; /* 内側に20pxの余白を持たせる */
+  border-radius: 8px; /* 箱の角を少し丸くする */
+}
+
+.news-list {
+  list-style: none; /* 黒丸を消す */
+  max-height: 200px; /* NEWSが多くなっても縦に伸びすぎないよう、高さを最大200pxに制限する */
+  overflow-y: auto; /* 200pxを超えた分は、エリア内で縦スクロールできるようにする */
+  padding-right: 5px; /* スクロールバーが表示された時のための隙間をあける */
+}
+
+/* NEWSエリア専用のスクロールバーの見た目調整（Chrome, Safari向け） */
+.news-list::-webkit-scrollbar { 
+  width: 6px; /* スクロールバーの幅を細くする */
+}
+.news-list::-webkit-scrollbar-thumb { 
+  background: #aaa; /* スクロールバーの色をグレーにする */
+  border-radius: 3px; /* スクロールバーの角を丸くする */
+}
+
+.news-list li {
+  padding: 12px 0; /* 各ニュース項目の上下に余白をあける */
+  border-bottom: 1px solid #ddd; /* 項目の区切り線として、下に薄い線を引く */
+  display: flex; /* 日付とテキストを横に並べる */
+  gap: 10px; /* 日付とテキストの間に隙間をあける */
+}
+
+.news-date {
+  font-weight: bold; /* 日付を太字にする */
+  color: black; /* 日付を黒にする */
+}
+
+.news-text {
+  color: #333; /* ニュースのテキスト色 */
+}
+
+/* 「NEW」の赤いバッジの設定 */
+.badge-new {
+  background: #ff3b30; /* 赤色にする */
+  color: white; /* 文字色は白 */
+  font-size: 10px; /* 文字を小さくする */
+  padding: 3px 5px; /* バッジ内の余白 */
+  border-radius: 999px; /* 数値を大きくして完全に丸い（カプセル型の）バッジにする */
+  font-weight: bold; /* 太字 */
+}
+
+/* =========================================
+   6. グリッドレイアウト (過去公演・メンバー等の一覧表示)
+========================================= */
+.works-grid {
+  display: grid; /* グリッド（格子状）レイアウトを使用する */
+  grid-template-columns: repeat(1, 1fr); /* 初期設定（スマホ向け）は1列で表示する */
+  gap: 15px; /* 画像と画像の隙間を15pxにする */
+}
+
+/* 画面幅が768px（タブレットサイズ）以上の時の設定 */
+@media (min-width: 768px) {
+  .works-grid { 
+    grid-template-columns: repeat(3, 1fr); /* 横に3列並べる */
   }
 }
 
-/* Loadingの中身をフェードアウト */
-.loading-wrapper {
-  opacity: 1;
-  transition: opacity 0.8s ease;
+/* 画面幅が1024px（パソコンサイズ）以上の時の設定 */
+@media (min-width: 1024px) {
+  .works-grid { 
+    grid-template-columns: repeat(4, 1fr); /* 横に4列並べる */
+  }
 }
 
-.loading-wrapper.fade-out {
-  opacity: 0;
+.work-item {
+  display: block; /* 全体をクリック可能にする */
+  text-decoration: none; /* リンクの下線を消す */
+  color: #333; /* 文字色 */
+  overflow: hidden; /* 中の画像がホバーで拡大された際、枠からはみ出ないように隠す */
+  cursor: pointer; /* マウスを乗せた時に「指マーク」にしてクリックできることを伝える */
 }
 
-#loading {
-  opacity: 1;
-  transition: opacity 0.8s ease;
+.work-item img {
+  width: 100%; /* 横幅を親要素（枠）いっぱいに広げる */
+  aspect-ratio: 3 / 4; /* 画像の縦横比を 3:4（縦長のポスター比率）に固定する */
+  object-fit: contain; /* 画像が切れないように、枠内にすべて収まるように縮小・拡大する */
+  background: white; /* 画像の周りにできた余白部分は白で塗りつぶす */
+  transition: transform 0.3s ease; /* 拡大する際のアニメーション時間 */
 }
 
-#loading.fade-out {
-  opacity: 0;
+/* ポスター画像にマウスを乗せた時の設定 */
+.work-item:hover img {
+  transform: scale(1.05); /* 画像を1.05倍にフワッと拡大する */
+}
+
+.work-title {
+  margin-top: 8px; /* 画像とタイトルの隙間 */
+  font-size: 14px; /* タイトルの文字サイズ */
+  text-align: center; /* タイトルを中央寄せにする */
+  font-weight: bold; /* 太字にする */
+  letter-spacing: 1px; /* 文字間隔をあける */
+}
+
+/* メンバー紹介の画像だけ、アイコンのように正方形にする特別設定 */
+#members .work-item img {
+  aspect-ratio: 1 / 1; /* 縦横比を 1:1（正方形）に固定する */
+  width: 300px; /* 横幅を300pxに固定 */
+  height: 300px; /* 縦幅を300pxに固定 */
+  margin: 0 auto; /* 中央寄せにする */
+}
+
+/* メンバー名の横にあるXやInstagramの小アイコンの設定 */
+.x-icon {
+  width: 20px !important; /* 強制的に幅を20pxにする */
+  height: 20px !important; /* 強制的に高さを20pxにする */
+  vertical-align: bottom; /* テキストの下側のラインに合わせて配置する */
+}
+
+/* =========================================
+   7. モーダル (クリックした時に浮かび上がる詳細ポップアップ画面)
+========================================= */
+.modal {
+  display: none; /* 初期状態では画面から隠しておく */
+  position: fixed; /* 画面に対して固定する（スクロールしてもついてこない） */
+  inset: 0; /* 画面全体を覆う */
+  background: rgba(0,0,0,0.8); /* 背景を半透明の黒（透明度80%）にする */
+  z-index: 2000; /* ナビゲーションよりさらに上に（最前面に）表示する */
+  justify-content: center; /* モーダルの中身を左右中央に配置 */
+  align-items: center; /* モーダルの中身を上下中央に配置 */
+}
+
+/* JavaScriptでこの「active」クラスが付与されたら、モーダルを表示する */
+.modal.active {
+  display: flex; 
+}
+
+/* モーダルの白い箱の部分 */
+.modal-content {
+  width: 90%; /* スマホでも端に隙間ができるよう、幅を90%にする */
+  max-width: 900px; /* パソコンで広がりすぎないよう、最大幅を900pxにする */
+  max-height: 80vh; /* 画面の高さの80%以上は大きくならないようにする */
+  overflow-y: auto; /* 文章が多くて箱をはみ出た場合は、箱の中で縦スクロールさせる */
+  background: white; /* 箱の背景を白に */
+  border-radius: 10px; /* 箱の角を丸くする */
+  padding: 20px; /* 箱の内側の余白 */
+  display: flex; 
+  flex-direction: column; /* 中身を上から下に並べる */
+}
+
+/* モーダルの中身（画像とテキスト）のレイアウト */
+.modal-body {
+  display: flex; /* パソコン画面では画像(左)とテキスト(右)を横並びにする */
+  gap: 20px; /* 画像とテキストの間に20pxの隙間をあける */
+}
+
+/* モーダル内の左側（メイン画像とサムネイル） */
+.modal-left {
+  width: 330px; /* 横幅を固定する */
+  flex-shrink: 0; /* 右側のテキストが多くても、画像エリアが押し潰されないようにする */
+}
+
+#modal-main-img {
+  width: 100%; /* 横幅いっぱいを使う */
+  max-height: 100%; /* 高さをはみ出させない */
+  object-fit: contain; /* 画像全体が見えるように収める */
+  cursor: pointer; /* クリックでさらに拡大できることを示すカーソル */
+}
+
+/* サムネイル（小さい画像）一覧の設定 */
+.modal-thumbs {
+  display: flex; /* サムネイルを横に並べる */
+  gap: 8px; /* サムネイル同士の隙間 */
+  margin-top: 10px; /* メイン画像との隙間 */
+  overflow-x: auto; /* サムネイルが多くてはみ出る場合は、横スクロールさせる */
+}
+
+.modal-thumbs img {
+  width: 60px; /* サムネイルの幅 */
+  height: 80px; /* サムネイルの高さ */
+  object-fit: cover; /* 枠に合わせて綺麗に切り取る */
+  cursor: pointer; /* クリック可能にする */
+  border-radius: 4px; /* 角を少し丸くする */
+  opacity: 0.7; /* 選ばれていない画像は少し薄く（透明に）しておく */
+  transition: 0.2s; /* ホバー時のアニメーション */
+}
+
+.modal-thumbs img:hover { 
+  opacity: 1; /* マウスを乗せたらハッキリ表示する */
+}
+
+/* 現在選ばれている（表示されている）サムネイルの設定 */
+.modal-thumbs img.active {
+  outline: 2px solid #333; /* 選ばれていることが分かるように黒い枠線をつける */
+  opacity: 1; /* ハッキリ表示する */
+}
+
+/* モーダル内の右側（テキスト部分） */
+.modal-right {
+  line-height: 1.8; /* 文章の行間を少し広くして読みやすくする */
+}
+
+.modal-right hr {
+  margin: 10px 0; /* 線と文字の間に隙間をあける */
+  border: none; 
+  border-top: 2px solid #000; /* デフォルトの薄い線を消し、黒くて太い区切り線を引く */
+}
+
+.modal-right li { margin-top: 8px; } /* スタッフ情報などの箇条書きの隙間をあける */
+.modal-right h3 { margin-bottom: 10px; } /* タイトルの下の隙間 */
+.modal-right p { margin-bottom: 10px; } /* 説明文の下の隙間 */
+
+/* スマホ閲覧時（画面幅600px以下）のレイアウト変更 */
+@media (max-width: 600px) {
+  .modal-body { 
+    flex-direction: column; /* 画像(左)とテキスト(右)を、画像(上)とテキスト(下)の縦並びに変更する */
+  }
+  .modal-left { 
+    width: 100%; /* 画像エリアをスマホ画面幅いっぱいまで広げる */
+  }
+}
+
+/* モーダルを閉じるための「×」ボタン */
+.close-btn {
+  position: absolute; /* モーダルの箱の右上を基準にして絶対位置に配置する */
+  top: 10px; /* 上から10px */
+  right: 15px; /* 右から15px */
+  font-size: 30px; /* ×のサイズを大きくする */
+  color: #fff; /* ×の色を黒にする */
+  cursor: pointer; /* クリックできることを示す */
+  z-index: 10; /* 画像より上に表示させる */
+}
+
+/* =========================================
+   8. 画像拡大用モーダル（ポスター画像をさらに大きく見る画面）
+========================================= */
+.img-modal {
+  display: none; /* 初期状態では隠す */
+  position: fixed; /* 画面に固定 */
+  inset: 0; /* 全画面を覆う */
+  background: rgba(0,0,0,0.9); /* さきほどのモーダルよりさらに濃い黒い背景にする */
+  justify-content: center; /* 中央寄せ */
+  align-items: center; /* 中央寄せ */
+  z-index: 3000; /* メインのモーダル(2000)よりさらに上に表示する */
+}
+
+/* JSでクラスが付いたら表示する */
+.img-modal.active { display: flex; }
+
+#img-modal-content {
+  max-width: 90%; /* 画面幅の90%までしか大きくならないようにする */
+  max-height: 90%; /* 画面の高さの90%までしか大きくならないようにする */
+}
+
+/* =========================================
+   9. フッター（ページの一番下）
+========================================= */
+footer {
+  text-align: center; /* 文字を中央寄せ */
+  padding: 1rem; /* 上下の余白 */
+  background: #000; /* 背景を黒に */
+  color: white; /* 文字を白に */
+  margin-top: 2rem; /* すぐ上のコンテンツとの間に余白をあける */
+}
+
+/* =========================================
+   10. CONTACT セクション (お問い合わせフォーム)
+========================================= */
+.contact-container {
+  display: flex; /* フォームを配置するために設定 */
+  justify-content: center; /* フォームを画面のど真ん中に配置する */
+}
+
+.contact-form-wrap {
+  width: 100%; /* 基本は画面幅いっぱいを使う */
+  max-width: 700px; /* ただし、パソコンのような広い画面でも幅700px以上には広がらないように制限して綺麗に見せる */
+}
+
+/* フォーム本体の箱 */
+.contact-form {
+  background: #eee; /* 背景をグレーにする */
+  padding: 30px; /* 内側に30pxの余白 */
+  border-radius: 8px; /* 角を丸くする */
+}
+
+/* 各入力項目（名前、メールなど）のまとまり */
+.form-group {
+  margin-bottom: 20px; /* 次の項目との間に隙間をあける */
+}
+
+/* 項目のタイトル（「お名前」など） */
+.form-group label {
+  display: block; /* 縦に並べる */
+  margin-bottom: 8px; /* 入力欄との隙間 */
+  font-weight: bold; /* 太字 */
+  font-size: 14px; /* 文字サイズ */
+}
+
+/* 「必須」マークのデザイン */
+.required {
+  color: white; /* 文字は白 */
+  background: #ff3b30; /* 背景は赤色 */
+  font-size: 10px; /* 小さく */
+  padding: 2px 6px; /* 余白を調整して箱を作る */
+  border-radius: 4px; /* 角を少し丸める */
+  margin-left: 8px; /* タイトル文字との隙間 */
+  vertical-align: middle; /* 位置の微調整 */
+}
+
+/* 入力欄（テキストボックス、プルダウン、長文エリア）の共通デザイン */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; /* 横幅いっぱいに広げる */
+  padding: 10px; /* 内側の余白 */
+  border: 1px solid #ccc; /* 薄いグレーの枠線を引く */
+  border-radius: 4px; /* 角を丸める */
+  font-size: 16px; /* ★重要：iPhoneなどで入力時に勝手に画面がズームされるのを防ぐためのサイズ指定 */
+  font-family: inherit; /* サイト全体のフォントに合わせる */
+}
+
+/* ユーザーが入力中（フォーカスが当たっている時）のデザイン */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; /* ブラウザ標準の青い枠を消す */
+  border-color: #444; /* 代わりに枠線を濃いグレーにして入力中であることを分かりやすくする */
+}
+
+/* 「送信する」ボタンのデザイン */
+.submit-btn {
+  display: block; /* 縦に積む */
+  width: 100%; /* 横幅いっぱいにする */
+  padding: 15px; /* 大きく押しやすくする */
+  background: #444; /* 黒に近いグレーの背景 */
+  color: white; /* 白文字 */
+  border: none; /* 枠線を消す */
+  border-radius: 4px; /* 角を丸める */
+  font-size: 16px; /* 文字サイズ */
+  font-weight: bold; /* 太字 */
+  cursor: pointer; /* マウスを乗せたら指マークにする */
+  transition: 0.3s; /* 色が変わるアニメーション時間 */
+}
+
+/* 送信ボタンにマウスを乗せた時 */
+.submit-btn:hover {
+  background: #666; /* 少し明るいグレーにして押せることを伝える */
+}
+
+/* =========================================
+   11. SNS セクション (X & Instagram)
+========================================= */
+/* 外側の大きな箱 */
+.sns-container {
+  display: flex; /* Xとインスタを並べるための設定 */
+  flex-direction: column; /* 基本（スマホ画面）は、X(上)とインスタ(下)の「縦並び」にする */
+  gap: 30px; /* 上下の箱の隙間 */
+  margin-top: 20px; /* タイトルとの隙間 */
+}
+
+/* 画面幅が768px（タブレット・PC）以上の時の設定 */
+@media (min-width: 768px) {
+  .sns-container {
+    flex-direction: row; /* スマホの縦並びを解除して、左右の「横並び」に変更する！ */
+    justify-content: space-between; /* 左右に均等に配置する */
+  }
+}
+
+/* Xとインスタ、それぞれを入れる白い箱 */
+.sns-box {
+  width: 100%; /* スマホの時は横幅いっぱい */
+  background: #fff; /* 背景を白に */
+  padding: 20px; /* 内側の余白 */
+  border-radius: 8px; /* 角を丸く */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* 箱の周りにほんのり薄い影をつけて浮いているように見せる */
+
+  display: flex; /* 中に入っている埋め込み要素を配置するための設定 */
+  flex-direction: column; /* 縦に並べる */
+  align-items: center; /* 横方向の「ど真ん中」に配置する */
+}
+
+/* PC画面の時は、それぞれの箱の幅を制限して横並びにする */
+@media (min-width: 768px) {
+  .sns-box {
+    width: 48%; /* 全体の48%ずつの幅にする（残りの4%が真ん中の隙間になる） */
+  }
+}
+
+/* 「X(Twitter)」「Instagram」のタイトル部分 */
+.sns-title {
+  width: 100%; /* 箱が中央寄せになっても、区切り線は端から端まで引くために100%にする */
+  text-align: center; /* 文字は中央寄せ */
+  font-size: 18px; /* 文字サイズ */
+  margin-bottom: 15px; /* 下の要素との隙間 */
+  border-bottom: 2px solid #eee; /* 下に薄いグレーの区切り線を引く */
+  padding-bottom: 10px; /* 線と文字の間の隙間 */
+}
+
+/* 埋め込み時のInstagramが箱からはみ出さないようにする魔法のコード */
+.sns-box iframe {
+  max-width: 100% !important; /* 絶対に親要素（箱）より大きくならないように強制する */
+  border-radius: 8px; /* インスタの枠を少し丸める */
+}
+
+/* ＝ 埋め込みエリア（高さを強制的に揃えるスクロール枠） ＝ */
+.embed-scroll-area {
+  width: 100%; /* 横幅いっぱい */
+  height: 600px; /* ★ここでXとインスタの箱の高さを「完全に同じ高さ（600px）」に固定して統一する！ */
+  overflow-y: auto; /* 600pxを超えた長い投稿は、この枠の中だけで縦にスクロールさせる */
+  overflow-x: hidden; /* 横スクロールは絶対に出ないように隠す */
+  border-radius: 8px; /* スクロール枠の角を少し丸くする */
+}
+
+/* スクロールエリア専用のスクロールバーの見た目（PC向け） */
+.embed-scroll-area::-webkit-scrollbar {
+  width: 6px; /* スクロールバーを細くスタイリッシュにする */
+}
+.embed-scroll-area::-webkit-scrollbar-thumb {
+  background: #ccc; /* スクロールバーの色をグレーにする */
+  border-radius: 3px; /* バーの角を丸くする */
+}
+
+/* X (Twitter) の位置調整 */
+.embed-scroll-area .twitter-tweet {
+  margin: 0 auto !important; /* Xの投稿を枠内のど真ん中に強制配置する */
+}
+
+/* Instagram の位置調整 */
+.embed-scroll-area .instagram-media {
+  margin: 0 auto !important; /* インスタの投稿を枠内のど真ん中に強制配置する */
+  min-width: 100% !important; /* 枠いっぱいに広げて、横に不自然な余白ができるのを消す */
 }
