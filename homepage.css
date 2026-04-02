@@ -320,7 +320,7 @@ section h2 {
   }
   .news-text {
     width: auto; /* 横幅100%を解除 */
-    flex-grow: 1; /* 余ったスペースをテキストに使う */
+    flex-grow: 0; /* 余ったスペースをテキストに使う */
     order: 0; /* ★HTMLの元の順番（真ん中）に戻す */
   }
   .badge-new {
