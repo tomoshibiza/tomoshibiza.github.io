@@ -276,29 +276,31 @@ section h2 {
 }
 
 .news-list li {
-  padding: 12px 0; /* 各ニュース項目の上下に余白をあける */
-  border-bottom: 1px solid #ddd; /* 項目の区切り線として、下に薄い線を引く */
-  display: flex; /* 日付とテキストを横に並べる */
-  gap: 10px; /* 日付とテキストの間に隙間をあける */
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-wrap: wrap; /* ★画面が狭い時に要素の改行を許可する */
+  align-items: center; /* 縦のズレを中央で揃える */
+  gap: 5px 10px; /* 上下5px、左右10pxの隙間をあける */
 }
 
 .news-date {
-  font-weight: bold; /* 日付を太字にする */
-  color: black; /* 日付を黒にする */
+  font-weight: bold;
+  color: black;
+  order: 1; /* 並び順を1番目にする */
+  flex-shrink: 0; /* 画面が狭くても日付を縮ませない（崩れ防止） */
 }
 
-.news-text {
-  color: #333; /* ニュースのテキスト色 */
-}
-
-/* 「NEW」の赤いバッジの設定 */
+/* ★HTMLでは最後にあるバッジを、CSSの力で「日付のすぐ横（2番目）」に移動させる魔法 */
 .badge-new {
-  background: #ff3b30; /* 赤色にする */
-  color: white; /* 文字色は白 */
-  font-size: 10px; /* 文字を小さくする */
-  padding: 3px 5px; /* バッジ内の余白 */
-  border-radius: 999px; /* 数値を大きくして完全に丸い（カプセル型の）バッジにする */
-  font-weight: bold; /* 太字 */
+  background: #ff3b30;
+  color: white;
+  font-size: 10px;
+  padding: 3px 5px;
+  border-radius: 999px;
+  font-weight: bold;
+  order: 2; /* 並び順を2番目にする */
+  flex-shrink: 0; /* バッジを縮ませない */
 }
 
 /* =========================================
