@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /*
   // --- 1. ローディング画面のフェードアウト処理 ---
   // （以下、既存のコードが続きます...）
   const loading = document.getElementById("loading"); // 全画面を覆う黒い背景を取得
@@ -39,6 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
       loading.style.display = "none";
     }, 800);
   }, 3000);
+  */
+ // --- 1. ローディング画面のフェードアウト処理 ---
+  const loading = document.getElementById("loading");
+  const wrapper = document.querySelector(".loading-wrapper");
+
+  // ★「3秒待つ」のではなく「ページの読み込みが完了した瞬間（load）」に実行する
+  window.addEventListener("load", () => {
+    wrapper.classList.add("fade-out");
+    loading.classList.add("fade-out");
+
+    setTimeout(() => {
+      loading.style.display = "none";
+    }, 800);
+  });
 
 
   // --- 2. モーダル（詳細ポップアップ）を開く処理 ---
