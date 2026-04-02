@@ -315,13 +315,16 @@ section h2 {
     flex-wrap: nowrap; /* 改行させない */
     align-items: flex-start; /* 文章が長くなった時に、日付を上端で揃える */
   }
+  .news-date {
+    order: 0; /* ★HTMLの元の順番（一番左）に戻す */
+  }
   .news-text {
     width: auto; /* 横幅100%を解除 */
     flex-grow: 1; /* 余ったスペースをテキストに使う */
-    order: 2; /* パソコン版ではテキストを真ん中（2番目）に戻す */
+    order: 0; /* ★HTMLの元の順番（真ん中）に戻す */
   }
   .badge-new {
-    order: 3; /* パソコン版ではバッジを一番右端（3番目）に戻す */
+    order: 0; /* ★HTMLの元の順番（一番右）に戻す */
     margin-top: 3px; /* 高さを少し微調整 */
   }
 }
