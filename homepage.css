@@ -749,7 +749,7 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 画像が歪まないように枠いっぱいに切り抜いて表示 */
+  object-fit: contain; /* 画像が歪まないように枠いっぱいに切り抜いて表示 */
   opacity: 0; /* 初期状態は透明にして見えなくする */
   transition: opacity 1.5s ease-in-out; /* 1.5秒かけてフワッと透明度が変わるアニメーション */
 }
