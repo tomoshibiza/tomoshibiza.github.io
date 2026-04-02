@@ -3,7 +3,28 @@
 ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
 
+  // --- ★追加：ハンバーガーメニューの処理 ---
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+
+  // ハンバーガーボタンがクリックされた時の処理
+  hamburger.addEventListener("click", () => {
+    // ボタンとメニューの両方に「active」という目印をつけたり外したりする
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
+
+  // メニューの中のリンク（NEWSなど）がクリックされた時の処理
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      // リンク先に飛ぶと同時に、メニューを閉じる（activeを外す）
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    });
+  });
+
   // --- 1. ローディング画面のフェードアウト処理 ---
+  // （以下、既存のコードが続きます...）
   const loading = document.getElementById("loading"); // 全画面を覆う黒い背景を取得
   const wrapper = document.querySelector(".loading-wrapper"); // くるくるアイコンと文字の塊を取得
 
