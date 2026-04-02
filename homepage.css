@@ -290,7 +290,7 @@ section h2 {
   max-width: 300px; /* ただし最大300pxまでしか大きくしない */
   height: auto; /* 高さは自動調整（aspect-ratioが効いて正方形になる） */
   margin: 0 auto;
-  object-fit: cover; /* 画像が歪まないように綺麗に切り抜く */
+  object-fit: contain; /* 画像が歪まないように綺麗に切り抜く */
 }
 
 /* メンバー名の横にあるXやInstagramの小アイコンの設定 */
