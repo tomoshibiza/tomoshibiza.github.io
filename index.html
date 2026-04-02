@@ -2,191 +2,266 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-    <link rel="stylesheet" href="homepage.css">
-
-  <!-- ★最重要：レスポンシブ用 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>灯座</title>
-
-  <style>
-    /* ===== 基本リセット ===== */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-      background: #f5f5f5;
-      color: #333;
-    }
-
-    /* ===== 共通レイアウト ===== */
-    /*header {
-      background: #222;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-    }*/
-
-    nav {
-      background: #444;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column; /* モバイル優先 */
-    }
-
-    nav a {
-      display: block;
-      padding: 1rem;
-      color: white;
-      text-decoration: none;
-      border-top: 1px solid #555;
-    }
-
-    nav a:hover {
-      background: #666;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 1rem;
-      background: white;
-    }
-
-    .content {
-      display: grid;
-      grid-template-columns: 1fr; /* モバイルは1列 */
-      gap: 1rem;
-    }
-
-    .card {
-      background: #eee;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #222;
-      color: white;
-      margin-top: 2rem;
-    }
-
-    /* ===== タブレット以上 ===== */
-    @media (min-width: 768px) {
-
-      nav ul {
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      nav a {
-        border: none;
-      }
-
-      .content {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* ===== PCサイズ ===== */
-    @media (min-width: 1024px) {
-      .content {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-  </style>
+  <link rel="shortcut icon" href="circle.ico">
+  <link rel="stylesheet" href="homepage.css">
 </head>
 
-  <body>
-<!-- ローディング画面 -->
-<div id="loading">
-  <div class="loading-wrapper">
-    <img src="circle.png" class="loading-icon" alt="">
-    <span class="loading-text">Loading</span>
-    <img src="circle.png" class="loading-icon" alt="">
-  </div>
-</div>
-    <main>
-<header>
-  <div class="fuchidori">
-    <h1>2026年4月2日（木）<br>公開予定</h1>
-
-    <p style="margin-top: 20px;">
-      <a href="https://x.com/tomoshibiza" target="_blank">団体X</a> ／
-      <a href="https://www.instagram.com/tomoshibiza" target="_blank">団体Instagram</a>
-    </p>
-
-  </div>
-</header>
-      </main>
-      <!-- 🔵 ロード終了処理 -->
-<script>
-window.addEventListener("load", () => {
-
-  const loading = document.getElementById("loading");
-  const wrapper = document.querySelector(".loading-wrapper");
-
-  // 🔵 3秒待ってからフェード開始
-  setTimeout(() => {
-
-    wrapper.classList.add("fade-out");
-    loading.classList.add("fade-out");
-
-    // 🔵 フェード終了後に完全削除
-    setTimeout(() => {
-      loading.style.display = "none";
-    }, 800);
-
-  }, 3000);
-
-});
-</script>
-  </body>
-              
-      <!--
 <body>
-
-<header>
-  <h1>サイトタイトル</h1>
-</header>
-
-<nav>
-  <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-  </ul>
-</nav>
-
-<main>
-  <h2>コンテンツ</h2>
-
-  <div class="content">
-    <div class="card">内容1</div>
-    <div class="card">内容2</div>
-    <div class="card">内容3</div>
-    <div class="card">内容4</div>
-    <div class="card">内容5</div>
-    <div class="card">内容6</div>
+  <div id="loading">
+    <div class="loading-wrapper">
+      <span class="loading-text">Loading...</span>
+      <img src="circle.png" class="loading-icon" alt="">
+    </div>
   </div>
-</main>
+    
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <a href="#">
+          <img src="メニューバー.jpg" alt="灯座ロゴ">
+        </a>
+      </div>
+      <ul>
+        <li><a href="#news">NEWS</a></li>
+        <li><a href="#profile">PROFILE</a></li>
+        <li><a href="#works">ARCHIVES</a></li>
+        <li><a href="#sungeki">PROJECTS</a></li>
+        <li><a href="#members">MEMBERS</a></li>
+        <li><a href="#sns">SNS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<footer>
-  <p>© 2026 Sample Site</p>
-</footer>
+  <main>
+    
+    <section id="news">
+      <h2>NEWS</h2>
+      <ul class="news-list">
+        <li>
+          <span class="news-date">2026.04.02</span>
+          <span class="news-text">劇団ホームページを公開しました。</span>
+          <span class="badge-new">NEW</span>
+        </li>
+        <li>
+          <span class="news-date">2026.03.22</span>
+          <span class="news-text">四季の里演劇祭2　出場決定！</span>
+          <span class="badge-new">NEW</span>
+        </li>
+        <li>
+          <span class="news-date">2026.03.04</span>
+          <span class="news-text">『演劇人インタビューサイトintvw.jp』のタカハシさんにインタビューをしていただきました！<a href='https://www.intvw.jp/tomoshibiza_with_hamada'>記事はこちらから</a></span>
+        </li>
+        <li>
+          <span class="news-date">2025.11.27</span>
+          <span class="news-text">フリーマガジン『FASTNER.』さんにインタビューをしていただきました！<a href='https://fastner-magazine.com/'>関連Web</a></span>
+        </li>
+        <li>
+          <span class="news-date">2025.03.11</span>
+          <span class="news-text">『学生文化応援団』さんにインタビューをしていただきました！<a href='https://gakusei-bunka.kyoto-np.jp/archives/1758'>記事はこちらから</a></span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="profile">
+      <h2>PROFILE</h2>
+      <p>ジャンルとしての"灯座"を確立すべく活動している劇団。直近2年の京都学生演劇祭に出場し、2024年に演出賞・審査員奨励賞・TOWA賞、2025年には観客賞を受賞。観客をゆるく巻き込む作品を特徴とし、観客と出演者の境界をなくし、「その場にいる皆で楽しむこと」を目指している。</p>
+    </section>
+
+    <section id="works">
+      <h2>ARCHIVES</h2>
+      <div class="works-grid">
+
+        <div class="work-item"
+             data-images="./夏に忘れ物/夏に忘れ物_表.jpg,./夏に忘れ物/夏に忘れ物_裏.jpg,./夏に忘れ物/夏に忘れ物1.jpg,./夏に忘れ物/夏に忘れ物2.jpg,./夏に忘れ物/夏に忘れ物3.jpg"
+             data-title="京都学生演劇祭2024参加作品「夏に忘れ物」<br>審査員奨励賞、演出賞、TOWA賞受賞"
+             data-desc="気づくと見知らぬ場所にいたソラ。困惑するソラの前に現れたのは親友のレイとユウ。ここから抜け出す鍵は”夏を満喫する”こと…！？失った夏を取り戻すため3人は試行錯誤を繰り返す！果たしてソラたちは夏を満喫することができるのか　そして３人が迎える結末とは……<hr><li>作・演出<br>あららぎ ぽぽ<li>キャスト<br>ソラ：あららぎ ぽぽ　ユウ：nen　レイ：赤井華蓮<li>スタッフ<br>舞台：nen、あららぎ ぽぽ、藤　音響：平野　照明：あららぎ ぽぽ、藤　衣装小道具：あららぎ ぽぽ、nen　宣伝美術：赤井華蓮　情報宣伝：nen、あららぎ ぽぽ<li>日時：9/8(日),9/13(金) 18:00〜　※受付開始、開場は開演の30分前となります。<li>会場：養正児童公園＜希望の広場＞野外特設舞台<br>京都市左京区田中馬場町6-2<li>チケット料金<br>各ブロック券<br>　学生または22歳以下　予約2,300円/当日2,800円<br>　一般　予約3,500円/当日4,000円<br>　高校生または17歳以下　予約・当日1,000円<br>通し券<br>　学生または22歳以下　5,000円<br>　一般　7,500円<br>主催：京都学生演劇祭実行委員会<br>提携：日本学生演劇プラットフォーム、鴨川デルタフェスティバル実行委員会、KYOTO EXPERIMENT<br>協賛：テクハン株式会社、Kyoto.lighting、TOWA株式会社、株式会社セカツク<br>協力：ぴあ<br>後援：京都市、京都府文化力チャレンジ補助事業、京都市「Arts Aid KYOTO」補助事業">
+          <img src="./夏に忘れ物/夏に忘れ物_表.jpg" alt=" 京都学生演劇祭2024参加作品「夏に忘れ物」">
+          <p class="work-title">京都学生演劇祭2024参加作品<br>「夏に忘れ物」</p>
+        </div>
+
+        <div class="work-item"
+             data-images="./あの日の忘れ物/あの日の忘れ物_表.jpg,./あの日の忘れ物/あの日の忘れ物_裏.jpg,./あの日の忘れ物/あの日の忘れ物1.jpg,./あの日の忘れ物/あの日の忘れ物2.jpg,./あの日の忘れ物/あの日の忘れ物3.jpg,./あの日の忘れ物/あの日の忘れ物4.jpg,./あの日の忘れ物/あの日の忘れ物5.jpg,./あの日の忘れ物/あの日の忘れ物6.jpg,./あの日の忘れ物/あの日の忘れ物7.jpg,./あの日の忘れ物/あの日の忘れ物8.jpg,./あの日の忘れ物/あの日の忘れ物9.jpg,./あの日の忘れ物/あの日の忘れ物10.jpg,"
+             data-title="E9 若手ショーケース企画ENGEKI FRONT+参加作品「あの日の忘れ物」"
+             data-desc="皆さんは子どもの頃の夢を覚えていますか？気づくと知らない場所にいた望(のぞむ)。そこで出会ったサン、ルナと共に遠い日にした忘れ物を見つけに行く…．はずだったのに、ルナの一言から忘れ物探しは中断、”ある目的”のために見つけに行くのは雪＿＿＿！？果たして3人は夏に雪を見つけ目的を達成することはできるのか<hr><li>作・演出<br>あららぎ ぽぽ<li>キャスト<br>望：はまだだいすけ　サン：nen　ルナ：あららぎ ぽぽ<li>スタッフ<br>照明：近藤銀河　音響：平野　衣装小道具：あららぎ ぽぽ、nen　宣伝美術：あららぎ ぽぽ、はまだだいすけ<li>日時：6/28(土)20:00〜　6/29(日)11:00〜<li>会場：THEATRE E9 KYOTO<br>京都府京都市南区東九条南河原町9-1<li>チケット料金<br>1演目券<br>　一般　前売3,000円/当日3,500円<br>　学生または26歳以下　前売2,000円/当日2,500円<br>4演目券　※前売のみ<br>　一般　6,000円<br>　学生または26歳以下　4,000円<hr>若手ショーケース企画『ENGEKI FRONT+』<br>舞台監督：北村侑也<br>照明：大川貴啓<br>プロダクションマネージャ：北方こだち<br>プロデューサー：沢大洋<br>宣伝美術：春木美海<br>撮影：中谷利明<br>主催：THEATRE E9 KYOTO（一般社団法人アーツシード京都）<br>共催：日本学生演劇プラットフォーム<br>助成：芸術文化振興基金助成事業"> 
+          <img src="./あの日の忘れ物/あの日の忘れ物_表.jpg" alt=""> 
+          <p class="work-title">E9 若手ショーケース企画<br>ENGEKI FRONT+参加作品<br>「あの日の忘れ物」</p>
+        </div>
+
+        <div class="work-item"
+             data-images="./そうめん大量、ねぎ少々/そうめん大量、ねぎ少々_表.jpg,./そうめん大量、ねぎ少々/そうめん大量、ねぎ少々_裏.jpg,./そうめん大量、ねぎ少々/そうめん大量、ねぎ少々1.JPG,./そうめん大量、ねぎ少々/そうめん大量、ねぎ少々2.JPG,./そうめん大量、ねぎ少々/そうめん大量、ねぎ少々3.JPG,そうめん大量、ねぎ少々/そうめん大量、ねぎ少々4.JPG,./そうめん大量、ねぎ少々/そうめん大量、ねぎ少々5.JPG"
+             data-title="京都学生演劇祭2025参加作品「そうめん大量、ねぎ少々」<br>観客賞受賞"
+             data-desc="突然始まる流しそうめん。3人を待ち受けるのは数多の困難。出すしかない全力。振り絞る知恵。共に乗り越え生まれる絆。必要な物はタイムマシン。そうめんに薬味は必須。刻むネギ。気づく３人。続きが気になる貴方が座るのは客席。<hr><li>作・演出<br>あららぎ ぽぽ<li>キャスト<br>ゼン：はまだだいすけ（演劇ユニット日光浴）　ノア：あららぎ ぽぽ　タロちゃん：nen<li>スタッフ<br>舞台美術：nen、あららぎ ぽぽ、はまだだいすけ　音響：nen、平野　照明：あららぎ ぽぽ、近藤銀河　小道具：あららぎ ぽぽ　宣伝美術：はまだだいすけ、あららぎ ぽぽ<li>日程：2025年10月10日(金)〜13日(月・祝)（Cブロック上演日11日(土)、12日(日)）<li>会場：京都大学西部講堂<br>京都府京都市左京区吉田本町<li>チケット料金<br>各ブロック券<br>　一般：予約3,000円/当日3,500円<br>　U25：予約2,000円/当日2,500円<br>　高校生以下・障害者・介助者：予約1,000円/当日1,500円<br>通し券<br>　一般：8,500円<br>　U25：6,500円<br>　高校生以下、障害者、介助者：3,500円<br>団体応援チケット<br>　げそちけっと：5,000円<br>　あたりめチケット：10,000円<br>主催：京都学生演劇祭実行委員会<br>共催：西部講堂連絡協議会<br>提携：日本学生演劇プラットフォーム、KYOTO EXPERIMENT<br>京都府文化力チャレンジ補助事業、京都市「Arts Aid KYOTO」補助事業">
+          <img src="./そうめん大量、ねぎ少々/そうめん大量、ねぎ少々_表.jpg" alt="">
+          <p class="work-title">京都学生演劇祭2025参加作品<br>「そうめん大量、ねぎ少々」</p>
+        </div>
+
+        <div class="work-item"
+             data-images="./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜_表.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜_裏.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜1.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜2.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜3.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜4.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜5.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜6.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜7.jpeg,./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜8.jpeg"
+             data-title="C.T.T.KYOTO vol.126「勝手に全国！〜そうめん大量、ねぎ少々〜」"
+             data-desc="私たちを支配する謎の地底人タロちゃん。目的は私たちを食べること・．！？やつは善か悪か何者か。私たちが分かり合える日は来るのだろうか。<hr><li>作・演出<br>あららぎ ぽぽ<li>キャスト<br>ゼン：はまだだいすけ　ノア：あららぎ ぽぽ　タロちゃん：nen<li>スタッフ<br>舞台美術：nen、あららぎ ぽぽ、はまだだいすけ　音響：nen、平野　照明：あららぎ ぽぽ、近藤銀河　小道具：あららぎ ぽぽ　宣伝美術：はまだだいすけ、あららぎ ぽぽ<li>日時<br>　1/23（金）19:00　開演<br>　1/24（土）14:00　開演<br>　※受付開始・開場は開演の30分前<li>会場：左京東部いきいき市民活動センター集会室<br>〒606-8432 京都府京都市左京区鹿ヶ谷高岸町3-2<li>チケット料金<br>各ブロック券<br>　予約：1200円<br>　当日券：1500円<br>主催：C.T.T.京都事務局、左京東部いきいき市民活動センター">
+          <img src="./勝手に全国！〜そうめん大量、ねぎ少々〜/勝手に全国！〜そうめん大量、ねぎ少々〜_表.jpeg" alt="">
+          <p class="work-title">C.T.T.KYOTO vol.126<br>「勝手に全国！〜そうめん大量、ねぎ少々〜」</p>
+        </div>
+
+      </div>
+    </section>
+      
+    <section id="sungeki">
+      <h2>PROJECTS</h2>
+      <div class="works-grid">
+        <div class="work-item"
+             data-images="はたらくおとなと、縁側で話す会2025 SUMMER_表.jpg,はたらくおとなと、縁側で話す会2025 SUMMER_裏.jpg" 
+             data-title="株式会社悪ノ組織"
+             data-desc="はたらくおとなと、縁側で話す会 2025 SUMMER 寸劇企画 『株式会社悪ノ組織 第1話 早く内定取れれば大丈夫？ 第2話 本音で話そう！』<br><a href='https://occhan-obachan.com/feature/engawa2025summer/'>イベント詳細はこちらから</a>">
+          <img src="はたらくおとなと、縁側で話す会2025 SUMMER_表.jpg" alt="">
+          <p class="work-title">「株式会社悪ノ組織 第1話 早く内定取れれば大丈夫？ 第2話 本音で話そう！」</p>
+        </div>
+        
+        <div class="work-item"
+             data-images="はたらくおとなと、縁側で話す会2026 SPRING_表.jpg,はたらくおとなと、縁側で話す会2026 SPRING_裏.jpg"
+             data-title="宇宙人、ナイナイの就活"
+             data-desc="はたらくおとなと、縁側で話す会 2026 SPRING 寸劇企画　『宇宙人、ナイナイの就活』<br><a href='https://occhan-obachan.com/feature/engawa2026spring/'>イベント詳細はこちらから</a>">
+          <img src="はたらくおとなと、縁側で話す会2026 SPRING_表.jpg" alt="">
+          <p class="work-title">「宇宙人、ナイナイの就活」</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="members">
+      <h2>MEMBERS</h2>
+      <div class="works-grid">
+
+        <div class="work-item"
+             data-images="./あららぎ/あららぎ2.jpg,./あららぎ/あららぎ1.jpg,./あららぎ/あららぎ5.jpg,./あららぎ/あららぎ6.jpg,./あららぎ/あららぎ4.jpg"
+             data-title="あららぎ ぽぽ <a href='https://x.com/popo_tomoshibi?s=20'><img src='./x-logo/logo-black.png' class='x-icon' alt='あららぎ ぽぽのX'></a> "
+             data-desc="主宰・演出・脚本・役者<br><br>参加作品（Works)<ul><li>2024.06.01(土)〜06.02(日)九曜社プロデュース公演『それからぼくたちは何だかスープのことばかり考えて忘れてしまうね』役者 </li><li>2024.09.08(日)、2024.09.13(金)『夏に忘れ物』役者 </li><li>2025.05.05(月・祝)九曜社プロデュース公演『セーラー服反逆帝国』役者 </li><li>2025.06.28(土)、2025.06.29(日)『あの日の忘れ物』役者 </li><li>2025.08.26(火)第5回はたらくおとなと、縁側で話す会内寸劇企画『株式会社悪の組織 第1話:早く内定取れれば大丈夫？/第2話:本音で話そう！』 役者</li><li>2025.10.11(土)、2025.10.12(日)『そうめん大量、ねぎ少々』役者 </li><li>2026.01.23(金)、206.01.24(土)『勝手に全国！〜そうめん大量、ねぎ少々〜』役者 </li><li>2026.02.14(土)、206.02.15(日)共通舞台『new house』演出補佐  <a href='https://co-stage.com/newhouse'>(関連Web)</a></li><li>2026.02.21(土)KBS京都ラジオ『サウンド版ハンケイ500m』第392回　ゲスト <a href='https://www.kbs-kyoto.co.jp/radio/500/''>(関連Web)</a></li><li>2026.02.27(金)第6回はたらくおとなと、縁側で話す会内寸劇企画『宇宙人、ナイナイの就活』役者 </li><li>2026.03.27(金)〜03.29(日)春の大感謝祭2026 司会 </li></ul>">
+          <img src="./あららぎ/あららぎ2.jpg">
+          <p class="work-title">あららぎ ぽぽ</p>
+        </div>
+
+        <div class="work-item"
+             data-images="./仲程/仲程1.jpg"
+             data-title="仲程 俊介 <a href='https://x.com/nen_tomoshibi'><img src='./x-logo/logo-black.png' class='x-icon' alt='仲程 俊介のX'></a> <a href='https://www.instagram.com/shunsuke_pwd/'><img src='./01 Static Glyph/01 Gradient Glyph/Instagram_Glyph_Gradient.png' class='x-icon' alt='仲程 俊介のインスタ'></a> "
+             data-desc="役者・音響編集・Web制作<br><br>参加作品（Works)<ul><li>2024.09.08(日)、2024.09.13(金)『夏に忘れ物』役者 </li><li>2025.03.14(金)〜03.16(日)青コン企画(仮)『メカ・ゴリラの塔』役者 <a href='https://askyoto.or.jp/e9/ticket/20250314'>(関連Web)</a></li><li>2025.06.28(土)、2025.06.29(日)『あの日の忘れ物』役者 </li><li>2025.08.26(火)第5回はたらくおとなと、縁側で話す会内寸劇企画『株式会社悪の組織 第1話:早く内定取れれば大丈夫？/第2話:本音で話そう！』 役者</li><li>2025.10.11(土)、2025.10.12(日)『そうめん大量、ねぎ少々』役者 </li><li>2026.01.23(金)、206.01.24(土)『勝手に全国！〜そうめん大量、ねぎ少々〜』役者 </li><li>2026.02.21(土)KBS京都ラジオ『サウンド版ハンケイ500m』第392回　ゲスト<a href='https://www.kbs-kyoto.co.jp/radio/500/''>(関連Web)</a></li><li>2026.02.27(金)第6回はたらくおとなと、縁側で話す会内寸劇企画『宇宙人、ナイナイの就活』役者 </li><li>2026.03.27(金)〜03.29(日)春の大感謝祭2026 あたらよ『あんぴるぽろぴらーと』役者 </li></ul>">
+          <img src="./仲程/仲程1.jpg">
+          <p class="work-title">仲程 俊介</p>
+        </div>
+
+        <div class="work-item"
+             data-images="silhouette.jpg"
+             data-title="近藤銀河"
+             data-desc="照明/音響 オペ<br><br>参加作品（Works)<ul><li>2024.09.08(日)、2024.09.13(金)『夏に忘れ物』照明オペ </li><li>2025.06.28(土)、2025.06.29(日)『あの日の忘れ物』照明オペ </li><li>2025.10.11(土)、2025.10.12(日)『そうめん大量、ねぎ少々』音響オペ </li><li>2026.01.23(金)、206.01.24(土)『勝手に全国！〜そうめん大量、ねぎ少々〜』音響オペ </li></ul>">
+          <img src="silhouette.jpg">
+          <p class="work-title">近藤 銀河</p>
+        </div>
+
+        <div class="work-item"
+             data-images="silhouette.jpg"
+             data-title="田中 勇輝"
+             data-desc="照明/音響 オペ<br><br>参加作品（Works)<ul><li>2024.09.08(日)、2024.09.13(金)『夏に忘れ物』音響オペ </li><li>2025.06.28(土)、2025.06.29(日)『あの日の忘れ物』音響オペ </li><li>2025.10.11(土)、2025.10.12(日)『そうめん大量、ねぎ少々』照明オペ </li><li>2026.01.23(金)、206.01.24(土)『勝手に全国！〜そうめん大量、ねぎ少々〜』照明オペ </li></ul>">
+          <img src="silhouette.jpg">
+          <p class="work-title">田中 勇輝</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="sns">
+      <h2>SNS</h2>
+      <div class="sns-container">
+        
+        <div class="sns-box">
+          <h3 class="sns-title">X (Twitter)<a href='https://x.com/tomoshibiza'><img src='./x-logo/logo-black.png' class='x-icon' alt='灯座のX'></a></h3>
+          <div class="embed-scroll-area">
+            <blockquote class="twitter-tweet" data-theme="dark" data-align="center">
+              <p lang="ja" dir="ltr">【公演情報】<br>7/18(土)、7/19(日)に茨城県で行われる四季の里演劇祭2に灯座が参加することになりました！<br><br>屋内屋外で全国各地のさまざまな劇団の公演が見られる楽しい演劇祭になりそうです！
+              <a href="https://t.co/0ekmBfpRGv">https://t.co/0ekmBfpRGv</a></p>&mdash;
+              灯座 (@tomoshibiza) <a href="https://twitter.com/tomoshibiza/status/2036067838491004944?ref_src=twsrc%5Etfw">March 23, 2026</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </div>
+
+        <div class="sns-box">
+          <h3 class="sns-title">Instagram<a href='https://www.instagram.com/tomoshibiza/'><img src='./01 Static Glyph/01 Gradient Glyph/Instagram_Glyph_Gradient.png' class='x-icon' alt='灯座のインスタグラム'></a></h3>
+          <div class="embed-scroll-area">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU5gF_XgQcj/"></blockquote>
+            <script async src="//www.instagram.com/embed.js"></script>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>CONTACT</h2>
+      <div class="contact-container">
+        <div class="contact-form-wrap">
+          <form class="contact-form" action="https://formspree.io/f/xqegdpwo" method="POST">
+            <div class="form-group">
+              <label for="name">お名前 <span class="required">必須</span></label>
+              <input type="text" id="name" name="name" required placeholder="山田 太郎">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">メールアドレス <span class="required">必須</span></label>
+              <input type="email" id="email" name="email" required placeholder="example@email.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">ご用件</label>
+              <select id="subject" name="subject">
+                <option value="公演について">公演について</option>
+                <option value="劇団について">劇団について</option>
+                <option value="出演・依頼について">出演・ご依頼について</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+              <textarea id="message" name="message" rows="6" required placeholder="こちらに内容をご記入ください。"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">送信する</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer>
+    <p>©2026 Tomoshibiza.</p>
+  </footer>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="modal-body">
+        
+        <div class="modal-left">
+          <img id="modal-main-img" src="" alt="">
+          <div id="modal-thumbs" class="modal-thumbs"></div>
+        </div>
+
+        <div class="modal-right">
+          <h3 id="modal-title"></h3>
+          <p id="modal-desc"></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    
+  <div id="img-modal" class="img-modal">
+    <img id="img-modal-content" src="">
+  </div>
+    
+  <script src="homepage.js"></script>
 
 </body>
-  -->
 </html>
