@@ -143,5 +143,25 @@ document.addEventListener("DOMContentLoaded", () => {
   imgModal.addEventListener("click", () => {
     imgModal.classList.remove("active");
   });
+// --- PROFILE スライドショーの処理 ---
+  const slides = document.querySelectorAll(".profile-slideshow .slide");
+  
+  // スライド画像が存在する場合のみ実行
+  if (slides.length > 0) {
+    let currentSlide = 0; // 現在表示している画像の番号（最初は0番目＝1枚目）
 
+    // setIntervalを使って、指定した時間ごとに中の処理を繰り返す
+    setInterval(() => {
+      // 1. 現在表示している画像から「active」クラスを外して透明にする
+      slides[currentSlide].classList.remove("active");
+
+      // 2. 次の画像の番号を計算する
+      // （最後の画像まできたら 0 に戻るように「% slides.length」で割り算の余りを使う）
+      currentSlide = (currentSlide + 1) % slides.length;
+
+      // 3. 次の画像に「active」クラスを付けて表示する
+      slides[currentSlide].classList.add("active");
+      
+    }, 4000); // 4000ミリ秒 ＝ 4秒ごとに切り替わる（好みの長さに変更可能）
+  }
 });
