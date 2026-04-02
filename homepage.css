@@ -121,17 +121,33 @@ body {
 }
 
 .top-nav ul {
-  display: flex; /* メニューの各項目（NEWSなど）を横並びにする */
-  justify-content: center; /* メニュー一覧自体を中央に寄せる */
+  display: flex;
   list-style: none; /* 箇条書きの黒丸を消す */
+  
+  /* ↓ここから追加・変更↓ */
+  overflow-x: auto; /* スマホではみ出た分を横スクロールできるようにする */
+  white-space: nowrap; /* メニューの文字を改行させない */
+  -webkit-overflow-scrolling: touch; /* iOSで滑らかにスクロールさせる */
 }
 
-/* 右側のメニュー一覧（aタグ＝リンク）の設定 */
+/* スクロールバー自体は非表示にしてスッキリさせる */
+.top-nav ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* 画面が広いPC(768px以上)の時だけ、今まで通り中央寄せにする */
+@media (min-width: 768px) {
+  .top-nav ul {
+    justify-content: center;
+  }
+}
+
 .top-nav ul a {
-  display: block; /* リンクのクリックできる判定（当たり判定）を広げる */
-  padding: 1rem; /* 文字の周りに余白を作り、押しやすくする */
-  color: white; /* 文字色を白にする */
-  text-decoration: none; /* リンクの下線を消す */
+  display: block;
+  padding: 1rem 0.8rem; /* スマホ向けに左右の余白を少しだけ狭くする(1rem -> 0.8rem) */
+  color: white;
+  text-decoration: none;
+  font-size: 14px; /* スマホ向けに少し文字を小さく */
 }
 
 /* メニュー項目（NEWS等）にマウスを乗せた時の設定 */
@@ -269,10 +285,12 @@ section h2 {
 
 /* メンバー紹介の画像だけ、アイコンのように正方形にする特別設定 */
 #members .work-item img {
-  aspect-ratio: 1 / 1; /* 縦横比を 1:1（正方形）に固定する */
-  width: 300px; /* 横幅を300pxに固定 */
-  height: 300px; /* 縦幅を300pxに固定 */
-  margin: 0 auto; /* 中央寄せにする */
+  aspect-ratio: 1 / 1;
+  width: 100%; /* 基本は枠いっぱいに広げる */
+  max-width: 300px; /* ただし最大300pxまでしか大きくしない */
+  height: auto; /* 高さは自動調整（aspect-ratioが効いて正方形になる） */
+  margin: 0 auto;
+  object-fit: cover; /* 画像が歪まないように綺麗に切り抜く */
 }
 
 /* メンバー名の横にあるXやInstagramの小アイコンの設定 */
@@ -377,11 +395,19 @@ section h2 {
 
 /* スマホ閲覧時（画面幅600px以下）のレイアウト変更 */
 @media (max-width: 600px) {
+  .modal-content {
+    width: 95%; /* 90% -> 95% にして、スマホ画面を広く使う */
+    padding: 15px; /* 余白も少し減らす */
+  }
   .modal-body { 
-    flex-direction: column; /* 画像(左)とテキスト(右)を、画像(上)とテキスト(下)の縦並びに変更する */
+    flex-direction: column; 
   }
   .modal-left { 
-    width: 100%; /* 画像エリアをスマホ画面幅いっぱいまで広げる */
+    width: 100%; 
+  }
+  /* スマホの時は、メイン画像が画面の高さを占領しすぎないようにする */
+  #modal-main-img {
+    max-height: 45vh; /* 画面の高さの45%までしか大きくしない */
   }
 }
 
@@ -569,11 +595,18 @@ footer {
 
 /* ＝ 埋め込みエリア（高さを強制的に揃えるスクロール枠） ＝ */
 .embed-scroll-area {
-  width: 100%; /* 横幅いっぱい */
-  height: 600px; /* ★ここでXとインスタの箱の高さを「完全に同じ高さ（600px）」に固定して統一する！ */
-  overflow-y: auto; /* 600pxを超えた長い投稿は、この枠の中だけで縦にスクロールさせる */
-  overflow-x: hidden; /* 横スクロールは絶対に出ないように隠す */
-  border-radius: 8px; /* スクロール枠の角を少し丸くする */
+  width: 100%;
+  height: 450px; /* ★スマホの時は高さを450pxに抑える */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 8px;
+}
+
+/* PC画面の時は、高さを600pxにする */
+@media (min-width: 768px) {
+  .embed-scroll-area {
+    height: 600px;
+  }
 }
 
 /* スクロールエリア専用のスクロールバーの見た目（PC向け） */
