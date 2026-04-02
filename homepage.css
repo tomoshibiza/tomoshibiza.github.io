@@ -156,6 +156,76 @@ body {
 }
 
 /* =========================================
+   ハンバーガーメニュー（スマホ用）の設定
+========================================= */
+/* ハンバーガーボタンの基本デザイン（PC画面では隠しておく） */
+.hamburger {
+  display: none; /* 普段は非表示 */
+  flex-direction: column;
+  gap: 5px; /* 三本線の隙間 */
+  cursor: pointer;
+  z-index: 2000; /* メニューが開いた時も一番上に表示されるようにする */
+}
+
+/* 三本線の1本1本のデザイン */
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s; /* ボタンが「×」に変化する時のアニメーション */
+}
+
+/* ＝ スマホ画面（幅767px以下）の時の特別ルール ＝ */
+@media (max-width: 767px) {
+  
+  /* ① ハンバーガーボタンを表示する */
+  .hamburger {
+    display: flex;
+  }
+
+  /* ② 先ほど作った「つっかえ棒」をスマホでは解除する（ボタンを右端に寄せるため） */
+  .nav-inner::after {
+    display: none;
+  }
+
+  /* ③ メニュー一覧を画面の「右外」に隠して縦並びにする */
+  .top-nav ul {
+    position: fixed; /* 画面に固定 */
+    top: 70px; /* メニューバーの下から開始 */
+    right: -100%; /* ★画面の右外（見えない場所）に追い出しておく */
+    width: 100%; /* 画面幅いっぱい */
+    height: calc(100vh - 70px); /* 画面の高さ分 */
+    background: #000; /* 背景は黒 */
+    flex-direction: column; /* 横並びから「縦並び」に変更 */
+    justify-content: flex-start; /* 上から順に詰める */
+    padding-top: 20px;
+    transition: right 0.3s ease; /* スライドして出てくるアニメーション */
+  }
+
+  /* ④ メニューの文字を中央寄せにする */
+  .top-nav ul a {
+    text-align: center;
+    border-bottom: 1px solid #333; /* 項目と項目の間に薄い線を引く */
+  }
+
+  /* ⑤ JSで「active」クラスが付いたら、右外から画面内にスライドインさせる */
+  .top-nav ul.active {
+    right: 0;
+  }
+
+  /* ⑥ メニューが開いている時、三本線を「×（バツ）」マークに変形させる魔法 */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0; /* 真ん中の線は透明にして消す */
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* =========================================
    4. メインコンテンツと各セクション
 ========================================= */
 main {
