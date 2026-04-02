@@ -739,7 +739,7 @@ footer {
   margin: 30px auto 0; /* 上に30pxの余白をあけ、左右中央寄せ */
   border-radius: 8px; /* 角を少し丸くする */
   overflow: hidden; /* はみ出た部分を隠す */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* ほんのり影をつける */
+  /*box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* ほんのり影をつける */
 }
 
 /* スライドショー内の各画像の設定 */
