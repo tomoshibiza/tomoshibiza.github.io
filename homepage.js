@@ -14,10 +14,28 @@ document.addEventListener("DOMContentLoaded", () => {
     navMenu.classList.toggle("active");
   });
 
-  // メニューの中のリンク（NEWSなど）がクリックされた時の処理
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      // リンク先に飛ぶと同時に、メニューを閉じる（activeを外す）
+// ページ内のリンク（NEWSやロゴなど）がクリックされた時の処理
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", (e) => {
+      // ① デフォルトの挙動（URLに #news などを追加して履歴に残す）をストップ！
+      e.preventDefault();
+
+      // ② クリックしたリンクの飛び先（hrefの中身）を取得
+      const targetId = link.getAttribute("href");
+
+      // ③ 飛び先へ滑らかにスクロールする
+      if (targetId === "#") {
+        // ロゴ（href="#"）をクリックした場合は、ページの一番上へ
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        // メニュー（href="#news"など）をクリックした場合は、その場所へ
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      // ④ スマホのメニューが開いていた場合は閉じる
       hamburger.classList.remove("active");
       navMenu.classList.remove("active");
     });
