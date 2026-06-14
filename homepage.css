@@ -387,7 +387,7 @@ section h2 {
   width: 100%; /* 基本は枠いっぱいに広げる */
   max-width: 300px; /* ただし最大300pxまでしか大きくしない */
   height: auto; /* 高さは自動調整（aspect-ratioが効いて正方形になる） */
-   display: block; /*画像をブロック要素にして中央寄せを有効にする */
+  display: block; /*画像をブロック要素にして中央寄せを有効にする */
   margin: 0 auto;
   object-fit: contain; /* 画像が歪まないように綺麗に切り抜く */
 }
@@ -764,4 +764,88 @@ footer {
   .profile-slideshow {
     height: 250px; /* スマホでは高さを低くして見やすくする */
   }
+}
+
+
+/* =========================================
+   NEXT セクション
+========================================= */
+/*
+#next{
+  padding:120px 8%;
+}*/
+
+.next-stage{
+  display:flex;
+  gap:60px;
+  align-items:center;
+
+  max-width:900px;
+  margin:0 auto;
+}
+
+.next-image{
+  flex:1;
+}
+
+.next-image img{
+  width:100%;
+  display:block;
+  border-radius:20px;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.15);
+}
+
+.next-content{
+  flex:1;
+}
+
+
+.next-content h3{
+	font-family:"けいふぉんと";
+  font-size:2.4rem;
+  margin-bottom:20px;
+}
+
+.next-date{
+		font-family:"けいふぉんと";
+  font-size:1.2rem;
+  margin-bottom:25px;
+}
+
+.next-copy{
+		font-family:"けいふぉんと";
+  font-size:1.3rem;
+  line-height:1.8;
+  /*margin-bottom:40px;*/
+}
+
+.next-button{
+		font-family:"けいふぉんと";
+	  margin-top:20px;
+  display:inline-block;
+
+  padding:14px 36px;
+
+  background:black;
+
+  color:white;
+	
+	text-decoration:none;
+	
+
+  border-radius:999px;
+
+  transition:.3s;
+}
+
+.next-button:hover{
+  transform:translateY(-3px);
+}
+
+.next-detail{
+		font-family:"けいふぉんと";
+	font-size:1.0rem;
+	  line-height:3;
 }
