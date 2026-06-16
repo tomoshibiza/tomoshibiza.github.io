@@ -442,3 +442,15 @@ footer {
   }
 
 }
+/* =========================
+   スマホ用改行
+========================= */
+.sp-br{
+  display:none;
+}
+
+@media (max-width:768px){
+  .sp-br{
+    display:block;
+  }
+}
