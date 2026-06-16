@@ -387,3 +387,57 @@ footer {
   color: white; /* 文字を白に */
   margin-top: 2rem; /* すぐ上のコンテンツとの間に余白をあける */
 }
+
+/* =========================
+   スマホ用
+========================= */
+@media (max-width: 768px){
+
+  /* タイトル */
+  .shikinosato{
+    font-size:1.2rem;
+  }
+
+  #title h1{
+    font-size:2.2rem;
+    line-height:1.2;
+  }
+
+  .araragi{
+    font-size:1.2rem;
+  }
+
+  /* 本文 */
+  #detail p{
+    font-size:1rem;
+    line-height:1.8;
+  }
+
+  #detail h2{
+    font-size:1.5rem;
+    margin:40px 0 10px;
+  }
+
+  #detail h3{
+    font-size:1.2rem;
+    margin-bottom:0;
+  }
+
+  /* SNSアイコン */
+  .SNS-icon{
+    width:40px;
+  }
+
+  /* モーダルの×ボタン */
+  .img-close-btn{
+    top:10px;
+    right:20px;
+    font-size:2.5rem;
+  }
+
+  /* 入場料画像 */
+  #fee{
+    width:100%;
+  }
+
+}
