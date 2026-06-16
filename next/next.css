@@ -269,12 +269,6 @@ section h2 {
 	font-size:4.0rem;
 }
 
-@media (max-width: 768px){
-  #title h1{
-    font-size:1rem;
-  }
-}
-
  .araragi {
 	font-size:2.0rem;
 }
@@ -444,14 +438,6 @@ footer {
   /* 入場料画像 */
   #fee{
     width:100%;
-  }
-
-}
-
-@media screen and (max-width: 768px){
-
-  body{
-    background:red;
   }
 
 }
