@@ -849,3 +849,49 @@ footer {
 	font-size:1.0rem;
 	  line-height:3;
 }
+
+/* =========================================
+   NEXT スマホ対応
+========================================= */
+@media (max-width: 768px){
+
+  .next-stage{
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .next-image{
+    width: 100%;
+  }
+
+  .next-image img{
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .next-content h3{
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .next-date{
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .next-copy{
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .next-detail{
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  .next-button{
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
+}
