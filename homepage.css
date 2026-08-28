@@ -383,7 +383,7 @@ section h2 {
 /* 画面幅が600px（スマホサイズ）の時の設定 */
 @media (max-width: 768px) {
   .work-title { 
-  margin-bottom: 70px; /* 画像とタイトルの隙間 */
+  margin-bottom: 50px; /* 画像とタイトルの隙間 */
   }
 }
 
