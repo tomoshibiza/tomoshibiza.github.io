@@ -175,7 +175,7 @@ body {
   transition: all 0.3s; /* ボタンが「×」に変化する時のアニメーション */
 }
 
-/* ＝ スマホ画面（幅767px以下）の時の特別ルール ＝ */
+/* ＝ スマホ画面（幅767px以下）の時 ＝ */
 @media (max-width: 767px) {
   
   /* ① ハンバーガーボタンを表示する */
@@ -381,7 +381,7 @@ section h2 {
   letter-spacing: 1px; /* 文字間隔をあける */
 }
 /* 画面幅が600px（スマホサイズ）の時の設定 */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .works-title { 
   margin-bottom: 500px; /* 画像とタイトルの隙間 */
   }
