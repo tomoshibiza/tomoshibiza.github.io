@@ -380,8 +380,8 @@ section h2 {
   font-weight: bold; /* 太字にする */
   letter-spacing: 1px; /* 文字間隔をあける */
 }
-/* 画面幅が768px（タブレットサイズ）以上の時の設定 */
-@media (min-width: 768px) {
+/* 画面幅が600px（スマホサイズ）の時の設定 */
+@media (max-width: 600px) {
   .works-title { 
   margin-bottom: 500px; /* 画像とタイトルの隙間 */
   }
