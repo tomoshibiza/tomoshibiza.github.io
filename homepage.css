@@ -383,7 +383,7 @@ section h2 {
 /* 画面幅が768px（タブレットサイズ）以上の時の設定 */
 @media (min-width: 768px) {
   .works-title { 
-  margin-bottom: 40px; /* 画像とタイトルの隙間 */
+  margin-bottom: 500px; /* 画像とタイトルの隙間 */
   }
 }
 
