@@ -380,6 +380,12 @@ section h2 {
   font-weight: bold; /* 太字にする */
   letter-spacing: 1px; /* 文字間隔をあける */
 }
+/* 画面幅が768px（タブレットサイズ）以上の時の設定 */
+@media (min-width: 768px) {
+  .works-title { 
+  margin-bottom: 40px; /* 画像とタイトルの隙間 */
+  }
+}
 
 /* メンバー紹介の画像だけ、アイコンのように正方形にする特別設定 */
 #members .work-item img {
