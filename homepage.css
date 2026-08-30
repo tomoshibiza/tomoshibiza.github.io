@@ -786,7 +786,7 @@ footer {
   gap:60px;
   align-items:center;
 
-  max-width:900px;
+  max-width:950px;
   margin:0 auto;
 }
 
@@ -810,7 +810,7 @@ footer {
 
 .next-content h3{
 	font-family:"けいふぉんと";
-  font-size:2.2rem;
+  font-size:2.5rem;
   margin-bottom:20px;
 }
 
@@ -877,7 +877,7 @@ footer {
   }
 
   .next-content h3{
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 10px;
   }
 
