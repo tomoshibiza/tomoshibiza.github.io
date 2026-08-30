@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 // ページ内のリンク（NEWSやロゴなど）がクリックされた時の処理
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
+  document.querySelectorAll('a[href^="../index.html#"]').forEach(link => {
     link.addEventListener("click", (e) => {
       // ① デフォルトの挙動（URLに #news などを追加して履歴に残す）をストップ！
       e.preventDefault();
