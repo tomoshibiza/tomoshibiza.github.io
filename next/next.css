@@ -306,7 +306,7 @@ section h2 {
 }
 
 .location-map img{
-	width:900px;
+	width:300px;
 	height:auto;
 	transform: scale(1.05); 
 	cursor: pointer; 
